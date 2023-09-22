@@ -1,0 +1,187 @@
+{% extends 'layout.html' %}
+{% load static%}
+{% block content %}
+<!-- start home -->
+
+  
+<div class="container">
+    <br>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+  
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+  
+        <div class="item active">
+          <img src="{% static '/images/slider_img1.jpg'%}" alt="Chania" width="460" height="200">
+          <div class="carousel-caption">
+            <h3>Rooms For Rent</h3>
+            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="{% static '/images/slider_img2.jpg'%}" alt="Chania" width="460" height="200">
+          <div class="carousel-caption">
+            <h3>Chania</h3>
+            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+          </div>
+        </div>
+      
+        <div class="item">
+          <img src="{% static '/images/slider_img3.jpg'%}" alt="Flower" width="460" height="200">
+          <div class="carousel-caption">
+            <h3>Flowers</h3>
+            <p>Beatiful flowers in Kolymbari, Crete.</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="{% static '/images/slider_img4.jpg'%}" alt="Flower" width="460" height="200">
+          <div class="carousel-caption">
+            <h3>Flowers</h3>
+            <p>Beatiful flowers in Kolymbari, Crete.</p>
+          </div>
+        </div>
+    
+      </div>
+  
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  
+
+<!-- end home -->
+<br>
+<!-- search bar starts -->
+
+
+                    <div class="row height d-flex justify-content-center align-items-center">
+
+                      <div class="col-md-8">
+
+                        <div class="search">
+                          <i class="fa fa-search"></i>
+                          <input type="text" class="form-control" placeholder="Search For Rooms">
+                          <button class="btn btn-primary">Search</button>
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                
+  <!-- search bar ends -->
+
+<!--card start-->
+       <!-- Topic Cards -->
+       <div id="cards_landscape_wrap-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static '/images/slider_img2.jpg'%}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>Room 01</h6>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static '/images/slider_img1.jpg'%}" alt="" />
+                                </div>
+                                <div class="text-container">                                    
+                                    <h6>Room 02</h6>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static '/images/slider_img3.jpg'%}" alt="" />
+                                </div>
+
+                                <div class="text-container">
+                                    <h6>Room 03</h6>
+                                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{% static '/images/slider_img4.jpg'%}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>Room 04</h6>
+                                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--card end-->
+
+<!-- start service -->
+<section id="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="wow bounceIn" data-wow-offset="50" data-wow-delay="0.3s">OUR <span>SERVICES</span> </h2>
+            </div>
+            <div class="col-md-4 wow fadeIn" data-wow-offset="50" data-wow-delay="0.6s">
+                <i class="fa fa-laptop"></i>
+                <h4>House Rent</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie. Adipiscing vitae vel quam proin eget mauris eget. Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie.</p>
+            </div>
+            <div class="col-md-4 active wow fadeIn" data-wow-offset="50" data-wow-delay="0.9s">
+                <i class="fa fa-cloud"></i>
+                <h4>Post Ads</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie. Adipiscing vitae vel quam proin eget mauris eget. Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie.</p>
+            </div>
+            <div class="col-md-4 wow fadeIn" data-wow-offset="50" data-wow-delay="0.6s">
+                <i class="fa fa-cog"></i>
+                <h4>Lorem ipsum dolor</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie. Adipiscing vitae vel quam proin eget mauris eget. Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et laoreet phasellus ut nisi id leo molestie.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end servie -->
+{% endblock %}
