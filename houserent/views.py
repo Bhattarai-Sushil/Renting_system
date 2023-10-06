@@ -13,7 +13,10 @@ from django.db.models import Sum
 
 # Create your views here.
 def index (request):
-    return render(request, 'index.html',{})
+    first=FlatsAvailable.objects.latest('id')
+    latests=FlatsAvailable.objects.all().exclude(id=first.id)
+    ads=FlatsAvailable.objects.all
+    return render(request, 'index.html',{"ads":ads,'latest':latests,'first':first})
 
 def register(request):
     if request.method == 'POST':
@@ -79,3 +82,10 @@ def postad(request):
         return redirect('index')
     else:
          return render(request, 'postad.html',{})
+    
+
+def adDetail(request,slugs,id):
+    data=FlatsAvailable.objects.get(slugs=slugs)
+
+    others=FlatsAvailable.objects.exclude(id=id)
+    return render(request,'adviews.html',{'d':data,'o':others})
