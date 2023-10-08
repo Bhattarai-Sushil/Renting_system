@@ -25,3 +25,7 @@ urlpatterns = [
     path('', include('houserent.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header  =  "House Renting System"  
+admin.site.site_title  =  "House Renting admin site"
+admin.site.index_title  =  "House Renting  Admin"

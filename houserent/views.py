@@ -10,13 +10,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Sum
 
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index (request):
     first=FlatsAvailable.objects.latest('id')
     latests=FlatsAvailable.objects.all().exclude(id=first.id)
     ads=FlatsAvailable.objects.all
-    return render(request, 'index.html',{"ads":ads,'latest':latests,'first':first})
+    p=Paginator(FlatsAvailable.objects.all(),2)
+    page=request.GET.get('page')
+    flats=p.get_page(page)
+    return render(request, 'index.html',{"ads":ads,'latest':latests,'first':first,'flats':flats})
 
 def register(request):
     if request.method == 'POST':
@@ -89,3 +93,11 @@ def adDetail(request,slugs,id):
 
     others=FlatsAvailable.objects.exclude(id=id)
     return render(request,'adviews.html',{'d':data,'o':others})
+
+def search_flat(request):
+        if request.method == "POST":
+            search= request.POST['search']
+            flats=FlatsAvailable.objects.filter(title__contains=search)
+            return render(request, 'search_flat.html',{'search':search, 'flats':flats})
+        else:
+            return render(request, 'search_flat.html',{})

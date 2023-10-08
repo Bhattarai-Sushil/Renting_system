@@ -67,15 +67,17 @@
 
     <div class="search">
       <i class="fa fa-search"></i>
-      <input type="text" class="form-control" placeholder="Search For Rooms">
-      <button class="btn btn-primary">Search</button>
-      
+      <form method= POST action="{%url 'search-flat'%}" >
+        {% csrf_token %}
+      <input type="text" class="form-control" placeholder="Search For Rooms" name="search">
+      <button class="btn  btn-outline-secondary">Search</button>
+      </form>
 
     </div>
   </div>
   <!-- Filter starts -->
   <div class="col-12 col-md-4">
-  <button type="button" class="btn btn-lg btn-primary btn-dark " data-toggle="modal"
+  <button type="button" class="btn  btn-dark " data-toggle="modal"
     data-target="#exampleModal"> Filter now </button>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -129,7 +131,7 @@
 <!-- Topic Cards -->
 <br>
 {% if ads %}
-{% for ad in ads %}
+{% for ad in flats %}
 <div class="container">
 
   <div class="card">
@@ -168,7 +170,21 @@
 {% endif %}
 
 <!--card end-->
-
+<!--Paginatiom start-->
+<div class="container" >
+  <center>
+{%if flats.has_previous %}
+  <a href="?page=1" class="btn btn-dark btn-sm float-right">First</a>
+  <a href='?page={{flats.previous_page_number}}' class="btn btn-dark btn-sm float-right">Previous</a> 
+{%endif %}
+Page {{ flats.number }} of {{ flats.paginator.num_pages }}
+{%if flats.has_next %}
+  <a href="?page={{flats.next_page_number}}"class="btn btn-dark btn-sm float-right">Next</a>
+  <a href="?page={{flats.paginator.num_pages}}"class="btn btn-dark btn-sm float-right">Last</a>
+{%endif %}
+</center>
+</div>
+<!--Paginatiom end-->
 <!-- start service -->
 <section id="service">
   <div class="container">
