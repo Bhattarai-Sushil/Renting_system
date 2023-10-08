@@ -16,7 +16,7 @@ class FlatsAvailable(models.Model):
     date_and_time=models.DateTimeField(default=timezone.now)
     # For multiple images, we can use Django's FileField with the 'upload_to' parameter to specify the upload directory.
     images = models.ImageField(upload_to='',null=True)
-    slugs=models.SlugField(unique=True)
+    slugs=models.SlugField(unique=True,null=True)
 
     def __str__(self):
         return self.title
