@@ -6,4 +6,6 @@ class flatavailableAdmin(admin.ModelAdmin):
     list_display=('id','title')
     prepopulated_fields={'slugs':("title",)}
 
+    
+
 admin.site.register(FlatsAvailable,flatavailableAdmin)

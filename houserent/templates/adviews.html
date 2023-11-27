@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="text-container">
                                     <h6>{{ad.title}}</h6>
-                                    <p>{{ad.description}}</p>
+                                    {% comment %} <p>{{ad.description}}</p> {% endcomment %}
                                     <a href="{% url 'flats' ad.slugs ad.id%}" class="btn btn-dark">view</a>
                                 </div>
                             </div>

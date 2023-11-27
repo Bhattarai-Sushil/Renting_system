@@ -12,6 +12,9 @@ from django.db.models import Sum
 
 from django.core.paginator import Paginator
 
+
+
+
 # Create your views here.
 def index (request):
     first=FlatsAvailable.objects.latest('id')
@@ -94,6 +97,7 @@ def adDetail(request,slugs,id):
     others=FlatsAvailable.objects.exclude(id=id)
     return render(request,'adviews.html',{'d':data,'o':others})
 
+# Search Flat
 def search_flat(request):
         if request.method == "POST":
             search= request.POST['search']
@@ -101,3 +105,5 @@ def search_flat(request):
             return render(request, 'search_flat.html',{'search':search, 'flats':flats})
         else:
             return render(request, 'search_flat.html',{})
+        
+

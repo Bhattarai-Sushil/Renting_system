@@ -63,7 +63,7 @@
 <div class="container">
 <div class="row  ">
 
-  <div class="col-12 col-md-8">
+  <div class="col-12 col-md-10">
 
     <div class="search">
       <i class="fa fa-search"></i>
@@ -76,10 +76,10 @@
     </div>
   </div>
   <!-- Filter starts -->
-  <div class="col-12 col-md-4">
+  <div class="col-12 col-md-2" style="margin: inherit;" >
   <button type="button" class="btn  btn-dark " data-toggle="modal"
-    data-target="#exampleModal"> Filter now </button>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    data-target="#filterModal" style="padding: 18px 40px 18px 40px;" > Filter now </button>
+  <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -88,7 +88,8 @@
         <div class="modal-body row">
           <div class="mx-auto col-10 col-md-8 col-lg-6">
 
-            <form>
+            <form method="GET">
+              
               <div class="form-outline form-white mb-4">
                 <label for="priceMin">Price Range (Min):</label>
                 <input type="number" id="priceMin" name="priceMin" placeholder="Minimum Price">
@@ -175,11 +176,13 @@
   <center>
 {%if flats.has_previous %}
   <a href="?page=1" class="btn btn-dark btn-sm float-right">First</a>
-  <a href='?page={{flats.previous_page_number}}' class="btn btn-dark btn-sm float-right">Previous</a> 
+  <a href='?page={{flats.previous_page_number}}' class="btn btn-dark btn-sm float-right">&#8249;</a> 
 {%endif %}
+
 Page {{ flats.number }} of {{ flats.paginator.num_pages }}
+
 {%if flats.has_next %}
-  <a href="?page={{flats.next_page_number}}"class="btn btn-dark btn-sm float-right">Next</a>
+  <a href="?page={{flats.next_page_number}}"class="btn btn-dark btn-sm float-right">&#8250;</a>
   <a href="?page={{flats.paginator.num_pages}}"class="btn btn-dark btn-sm float-right">Last</a>
 {%endif %}
 </center>
