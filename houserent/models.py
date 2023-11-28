@@ -7,7 +7,12 @@ from django.utils.text import slugify
 from django.utils import timezone
 
 class FlatsAvailable(models.Model):
+
+    uid=models.ForeignKey(User, verbose_name="User Id", on_delete=models.CASCADE,null=True)
     title = models.CharField(max_length=100)
+    full_name=models.CharField(max_length=50,null=True)
+    email=models.EmailField(max_length=254,null=True)
+    phone=models.IntegerField(null=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=200,)
@@ -18,7 +23,7 @@ class FlatsAvailable(models.Model):
     contact_number = models.CharField(max_length=15)
     date_and_time=models.DateTimeField(default=timezone.now)
     # For multiple images, we can use Django's FileField with the 'upload_to' parameter to specify the upload directory.
-    images = models.ImageField(upload_to='',null=True)
+    images = models.ImageField(upload_to='uploads',null=True)
     slugs=models.SlugField(unique=True,null=True)
 
 
@@ -44,7 +49,16 @@ class Bookings(models.Model):
     
 
 class Booked(models.Model):
+    Booking_status=[
+        ('r','requested'),
+        ('a','approved'),
+        ('s','successful'),
+        ('x','rejected')
+    ]
     flat_id = models.ForeignKey(Bookings, on_delete=models.CASCADE)
+    booked_user=models.CharField(max_length=50,null=True)
+    status=models.CharField(max_length=50,choices=Booking_status,default='r')
+
 
     def __str__(self):
         return f"Booking {self.id} "

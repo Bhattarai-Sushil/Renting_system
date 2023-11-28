@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}{{request.user}} | Profile{% endblock header %}
+{% block content %}
+
+        <div class="row mt-5">
+
+            <!-- User column -->
+            <div class="col-lg-4 col-sm-12 mt-2">
+                <div class="w-100 d-flex flex-column text-center">
+                    <img src="{%static '/images/slider_img1.jpg'%}" alt="" width="100%" srcset="" class="rounded">
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-6 col-4 text-muted mt-4">
+                <p>First Name</p>
+                <p>Last Name</p>
+                <p>Username</p>
+                <p>Email</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-8 mt-4">
+                <p>{{request.user.first_name}}</p>
+                <p>{{request.user.last_name}}</p>
+                <p>{{request.user}}</p>
+                <p>{{request.user.email}}</p>
+
+            </div>
+            <div class="col-lg-12 col-sm-6">
+            </div>
+
+{%comment%}
+                <h5 class="text-muted mt-5">Post's History</h5>
+                <hr class="border-2 border-top bg-success border-success rounded shadow-sm ">
+                
+                {% if 'rd' %}     
+                <p>Number of items in rd: {{ rd|length }}</p>          
+                <table class="table  text-uppercase small mt-2">
+                    <thead class="text-muted">
+                        <td>Title</td>
+                        <td>Price/Rent</td>
+                        <td>Date</td>
+                        <td>Status</td>
+                    </thead>
+                    <tbody>
+                           {% for r in rd  %}
+                                <tr>
+                                    <td>{{r.title}}</td>
+                                    <td>{{r.price}}</td>
+                                    <td>{{r.date_and_time}}</td>
+                                    <td>{{r.get_post_status_display}}</td>
+                                </tr>
+                           {% endfor %} 
+                    </tbody>
+                </table>
+
+                
+                    {% if rd.has_previous or rd.has_next %}
+                    <div class="row mt-4">
+                        <div class="d-flex justify-content-center" >
+
+                            {% if rd.has_previous %}
+                                <a href="?page=1" class="px-2"><i class="fa-solid fa-angles-left"></i></a>
+                                <a href="?page={{ r.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
+                            {% endif %}
+                        
+                            <span class=" px-2">Page</span> {{ rd.number }} <span class="text-muted px-2"> of {{ rd.paginator.num_pages }}</span>
+                        
+                            {% if rd.has_next %}
+                                <a href="?page={{ rd.next_page_number }}"><i class="fa-solid fa-chevron-right"></i></a>
+                                <a href="?page={{ rd.paginator.num_pages }} "  class="px-2"><i class="fa-solid fa-angles-right"></i></a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}   
+
+            </div>
+        </div>
+ {%endcomment%}   
+        
+{% endblock content %}

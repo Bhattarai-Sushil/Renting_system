@@ -11,4 +11,5 @@ urlpatterns = [
     path('search_flat',views.search_flat,name='search-flat'),
 
     path('flats/<slug:slugs>/<int:id>',views.adDetail,name="flats"),
+    path('profile',views.profile,name='profile'),
 ]

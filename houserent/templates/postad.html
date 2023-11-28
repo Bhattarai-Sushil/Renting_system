@@ -4,7 +4,7 @@
     <h4>Post a Ad</h4>
 </div>
 <div class="container">
-    <form action=""  method="post">
+    <form action=""  method="post" enctype="multipart/form-data">
     {% csrf_token %} 
        <div class="row">
            {% comment %} {% if user.is_authenticated is not True %}
@@ -77,17 +77,17 @@
 
 
 
-            <!-- Donation amount -->
+            <!-- Rent amount -->
             <div class="col-md-12">
                 <label for="rent" class="form-label">Price/Rent</label>
                 <input type="number" class="form-control" name="rent" id="rent"  placeholder="Amount" required>
             </div>
             
-            <!-- imgae -->
+            <!-- image -->
 
             <div class="col-md-12">
                 <label for="flat_image" class="form-label">Upload Image</label>
-                <input type="file" name="flat_image" id="flat_image" class="form-control" multiple accept="image/*" required>
+                <input type="file" name="flat_image" id="flat_image" class="form-control" required>
             </div>
 
 
