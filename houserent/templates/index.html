@@ -104,7 +104,11 @@
                 <input type="number" id="location" name="location" placeholder="Enter Location">
               </div>
 
-
+              <div class="form-outline form-white mb-4">
+                <label for="location-slider" class="form-label">Select Radius:</label>
+                <input type="range" class="form-range" id="location-slider" min="1" max="100" step="1" value="50">
+                <span id="location-value">50 km</span>
+            </div>
               <div class="form-outline form-white mb-4">
                 <button class="btn btn-primary" type="submit">Filter</button>
               </div>

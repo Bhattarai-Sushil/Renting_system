@@ -36,10 +36,16 @@
     <div class="footer d-flex flex-column mt-5">
         <div class="row r4">
             <div class="col-md-2  ">{%if user.is_authenticated%}
-                <button type="button" class="btn btn-dark">BOOK NOW</button></div>
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <input type="hidden" name="flat-id" id="flat-id" value="{{d.id}}"/>
+                    <input type="submit" value="Book now" class="btn btn-dark"/>
+                </form>
                 {%else%}
                   <a href="{%url 'login'%}" class="btn btn-dark">BOOK NOW</a>
                 {%endif%}  
+            </div>
         </div>
     </div>
     {% endif %}

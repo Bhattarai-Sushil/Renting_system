@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from houserent.models import FlatsAvailable,Booked
+from houserent.models import FlatsAvailable,Flat,Booking#,Booked
 from .forms import UserRegistrationForm
 
 from django.contrib.auth import authenticate, login, logout
@@ -84,7 +84,7 @@ def postad(request):
         kitchen=request.POST['kitchen']
         contact_number=request.POST['contact_number']
         images=request.FILES['flat_image']
-        post=FlatsAvailable(title=title,description=description,price=price,location=location,bedroom=bedroom,livingroom=livingroom,bathroom=bathroom,kitchen=kitchen,contact_number=contact_number,images=images)
+        post=FlatsAvailable(uid=request.user,title=title,description=description,price=price,location=location,bedroom=bedroom,livingroom=livingroom,bathroom=bathroom,kitchen=kitchen,contact_number=contact_number,images=images)
         post.save()
         return redirect('index')
     else:
@@ -95,6 +95,17 @@ def adDetail(request,slugs,id):
     data=FlatsAvailable.objects.get(slugs=slugs)
 
     others=FlatsAvailable.objects.exclude(id=id)
+
+    if request.method=="POST":
+        flat_id=request.POST['flat-id']
+        user_id=request.user
+        print(flat_id)
+        flat_instance=FlatsAvailable.objects.get(id=flat_id)
+        res=Booking(user=user_id,flat=flat_instance)
+        res.save()
+        return redirect('index')
+    
+
     return render(request,'adviews.html',{'d':data,'o':others})
 
 # Search Flat
@@ -110,14 +121,31 @@ def search_flat(request):
 @login_required
 def profile(request):
     post_history=FlatsAvailable.objects.filter(uid=request.user)
-
+    Bookings=Booking.objects.filter(user=request.user)
     # pagination
     paginator_d=Paginator(post_history,10)
     pg_num_d=request.GET.get('page')
     pg_obj_d=paginator_d.get_page(pg_num_d)
 
+    res_msg=""
+    if request.method == 'POST':
+     
+        
+            try:
+                booking_id = request.POST['book-id']
+                res = Booking.objects.get(id=booking_id)
+                res.delete()
+                res_msg="booking success"
+                return redirect(request.path)
+            except Exception as e:
+                flat_id=request.POST['flat-id']
+                res=FlatsAvailable.objects.get(id=flat_id)
+                res.delete()
+                res_msg="flat post deleted"
+                return redirect(request.path)
 
-    return render(request,'profile.html',{'rd':pg_obj_d})
+
+    return render(request,'profile.html',{'rd':pg_obj_d,'bookings':Bookings,"msg":res_msg})
 
 
 #price filter
@@ -143,13 +171,35 @@ def home(request):
     return render(request, '.html', {'flats': flats})
 
 #Bookings
-def booking(request):
-    if request.user.is_authenticated==True:
-        flat_id=request.Bookings.id
-        user=Booked.object.filter(flat_id=flat_id,status='r')
-        if request.method=='POST':
-            flatid=request.POST['flat_id']
-            Booked.objects.filter(id=flatid).delete()
-        return render(request,'profile.html',{'flat_id':flat_id,'user':user})
-    else:
-        return redirect('profile')
+# def booking(request):
+#     if request.user.is_authenticated==True:
+#         flat_id=request.Bookings.id
+#         user=Booked.object.filter(flat_id=flat_id,status='r')
+#         if request.method=='POST':
+#             flatid=request.POST['flat_id']
+#             Booked.objects.filter(id=flatid).delete()
+#         return render(request,'profile.html',{'flat_id':flat_id,'user':user})
+#     else:
+#         return redirect('profile')
+
+def flat_detail(request, flat_id):
+    flat = Flat.objects.get(pk=flat_id)
+    user = request.user
+    booking_status = Booking.objects.filter(user=user, flat=flat).exists()
+
+    context = {
+        'flat': flat,
+        'booking_status': booking_status,
+    }
+
+    return render(request, 'flat_detail.html', context)
+
+def book_flat(request, flat_id):
+    flat = Flat.objects.get(pk=flat_id)
+    user = request.user
+
+    if not Booking.objects.filter(user=user, flat=flat).exists():
+        Booking.objects.create(user=user, flat=flat, status='Already Booked')
+        # Add any additional logic or processing here
+    
+    return redirect('flat_detail', flat_id=flat_id)
