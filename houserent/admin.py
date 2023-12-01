@@ -6,9 +6,9 @@ class flatavailableAdmin(admin.ModelAdmin):
     list_display=('id','title')
     prepopulated_fields={'slugs':("title",)}
 
-# class bookedAdmin(admin.ModelAdmin):
-#     list_display=('flat_id','booked_user','status')
+class bookedAdmin(admin.ModelAdmin):
+    list_display=('user','flat')
     
 
 admin.site.register(FlatsAvailable,flatavailableAdmin)
-# admin.site.register(Booked,bookedAdmin)
+admin.site.register(Booking,bookedAdmin)

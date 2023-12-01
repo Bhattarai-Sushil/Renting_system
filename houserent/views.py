@@ -185,11 +185,11 @@ def home(request):
 def flat_detail(request, flat_id):
     flat = Flat.objects.get(pk=flat_id)
     user = request.user
-    booking_status = Booking.objects.filter(user=user, flat=flat).exists()
+    # booking_status = Booking.objects.filter(user=user, flat=flat).exists()
 
     context = {
         'flat': flat,
-        'booking_status': booking_status,
+        # 'booking_status': booking_status,
     }
 
     return render(request, 'flat_detail.html', context)

@@ -35,7 +35,7 @@
                 <thead>
                     <th>User</th>
                     <th>Flat</th>
-                    <th>Booking Status</th>
+                    {% comment %} <th>Booking Status</th> {% endcomment %}
                     <th>Action</th>
                     
                 </thead>
@@ -46,7 +46,7 @@
                     <tr>
                         <td>{{b.user.first_name}} {{b.user.last_name}}</td>
                         <td>{{b.flat}}</td>
-                        <td>{{b.get_status_display}}</td>
+                        {% comment %} <td>{{b.get_status_display}}</td> {% endcomment %}
                         <td>
                             <form method='post'>
                                 {%csrf_token%}
@@ -67,7 +67,8 @@
 
     <div class="col-lg-12 col-sm-6">
     </div>
-    {% if 'rd' %}               
+    {% if 'rd' %}     
+    <h2>Booking History</h2>          
     <table class="table  text-uppercase small mt-2">
         <thead class="text-muted">
             <td>Title</td>
