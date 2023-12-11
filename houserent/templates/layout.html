@@ -69,7 +69,7 @@
                 <nav>
                     <ul class="nav nav-pills justify-content-end "  >  
                         {% if user.is_authenticated %}   
-                        <li class="nav-item" ><a class="nav-link" style="color: aliceblue;" href="{% url 'profile' %}" >Welcome <span class="glyphicon glyphicon-user"></span> {{request.user.username}}</a></li>
+                        <li class="nav-item" ><a class="nav-link" style="color: aliceblue;" href="{% url 'profile' %}" ><span class="glyphicon glyphicon-user"></span> Welcome  {{request.user.username}}</a></li>
                         {% endif %}
                         <li class="nav-item" ><a class="nav-link" style="color: aliceblue;" href="{% url 'index' %}" >Home</a></li>
                         
@@ -106,7 +106,7 @@
         <!-- footer -->
 
       <!-- footer -->
-      <div class="row p-2 d-flex  align-content-end mb-3 p-3 bg-dark">
+      <div class="p-2 d-flex  align-content-end mb-3 p-3 bg-dark " style=margin-right:0;>
         <div class="col-md-4 px-5 h2"><a href="{%url 'index'%}" class="text-decoration-none text-light">House Renting System</a></div>
         <div class="col-md-2 px-4">
             <h5 class="" style="color:whitesmoke">Links</h5>                
@@ -118,11 +118,11 @@
         </div>
         <div class="col-md-6"></div>
     </div>
-    <hr class="border-2 border-top bg-success border-info rounded shadow-sm ">
+   
     
-    <div class="row p-2 d-flex text-center align-content-end ">
-        <div class="">© 2023 Sushil Bhattarai & Rohit Maharjan</div>
-    </div>
+    
+        <center>© 2023 Sushil Bhattarai & Rohit Maharjan</center>
+    
 </div>
 
 

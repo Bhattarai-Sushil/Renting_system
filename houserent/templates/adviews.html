@@ -11,7 +11,6 @@
                 <hr>
             </div>
             <div class="col-md-3 text-right pqr"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-            
         </div>
     </div>
     <div class="container-body mt-4">
@@ -26,31 +25,36 @@
                     <hr>
                     <li>Contact Number: {{d.contact_number}}</li>
                     <li>Location: {{d.location}}</li>
-                    
-                    
                 </ul>
+                <h4>Posted By:{{d.uid}}</h4>
             </div>
             <div class="col-md-7"> <img src={{d.images.url}} height="400" width="auto"/>  </div>
         </div>
     </div>
     <div class="footer d-flex flex-column mt-5">
         <div class="row r4">
-            <div class="col-md-2  ">{%if user.is_authenticated%}
+            <div class="col-md-2  ">{% if user.is_authenticated %}
                 <form method="post">
                     {% csrf_token %}
-                    
                     <input type="hidden" name="flat-id" id="flat-id" value="{{d.id}}"/>
                     <input type="submit" value="Book now" class="btn btn-dark"/>
                 </form>
-                {%else%}
-                  <a href="{%url 'login'%}" class="btn btn-dark">BOOK NOW</a>
-                {%endif%}  
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-dark">BOOK NOW</a>
+                       
+                {% endif %}
             </div>
         </div>
     </div>
     {% endif %}
+    {% if message %}
+        <div class="toast show msg align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+           <h4> Already Booked</h4>
 
+        </div>
+    {% endif %}
 </div>
+
 
 
       <!-- Topic Cards -->

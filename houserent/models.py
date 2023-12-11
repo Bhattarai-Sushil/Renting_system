@@ -67,22 +67,15 @@ class Flat(models.Model):
     name = models.CharField(max_length=255)
     # other fields for flat details
 
+
+
 class Booking(models.Model):
-    # status=[
-    #     ('r','requested'),
-    #     ('a','approved'),
-    #     ('s','successful'),
-    #     ('x','rejected')
-    # ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    flat = models.ForeignKey(FlatsAvailable, on_delete=models.CASCADE)
-    #status = models.CharField(max_length=1,choices=status,default='r') 
+    flat = models.OneToOneField(FlatsAvailable, on_delete=models.CASCADE, unique=True)
 
     def __str__(self):
-         return f"Booking {self.id} "
+        return f"Booking {self.id}"
+
 
     
-
-    class Meta:
-        unique_together=('user','flat')
 

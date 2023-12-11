@@ -88,7 +88,8 @@
         <div class="modal-body row">
           <div class="mx-auto col-10 col-md-8 col-lg-6">
 
-            <form method="GET">
+            <form method="POST" action="{%url 'filter-flat'%}">
+              {% csrf_token %}
               
               <div class="form-outline form-white mb-4">
                 <label for="priceMin">Price Range (Min):</label>
@@ -99,16 +100,6 @@
                 <input type="number" id="priceMax" name="priceMax" placeholder="Maximum Price">
               </div>
 
-              <div class="form-outline form-white mb-4">
-                <label for="location">Location:</label>
-                <input type="number" id="location" name="location" placeholder="Enter Location">
-              </div>
-
-              <div class="form-outline form-white mb-4">
-                <label for="location-slider" class="form-label">Select Radius:</label>
-                <input type="range" class="form-range" id="location-slider" min="1" max="100" step="1" value="50">
-                <span id="location-value">50 km</span>
-            </div>
               <div class="form-outline form-white mb-4">
                 <button class="btn btn-primary" type="submit">Filter</button>
               </div>
